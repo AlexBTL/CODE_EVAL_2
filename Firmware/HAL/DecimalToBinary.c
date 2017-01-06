@@ -19,13 +19,10 @@
 /**************************************************************/
 /*                         PRIVATE FUNCTIONS                  */
 /**************************************************************/
-/**************************************************************/
-/*                         PUBLIC FUNCTIONS                   */
-/**************************************************************/
 
 //AL : General rules un fichier max 5 fonctions, une fonction max 25 lignes, et max 5 variable locale DecToBin trop longue
 
-bool MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d'erreur car tu test bien l'echec mais quand tu apelle cette fonction tu lis pas la valeur de retour de cette fonction donc ca sert a rien 
+static bool MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d'erreur car tu test bien l'echec mais quand tu apelle cette fonction tu lis pas la valeur de retour de cette fonction donc ca sert a rien 
 {
    if(buffer != NULL)
    {
@@ -38,7 +35,7 @@ bool MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d
    }
 }
 
-int* MemoryAdd(int value,int *memory)                     // Add some memory space if the number is bigger
+static int* MemoryAdd(int value,int *memory)                     // Add some memory space if the number is bigger
 {
    int *moreMemory;
 
@@ -52,7 +49,7 @@ int* MemoryAdd(int value,int *memory)                     // Add some memory spa
    return (moreMemory);
 }
 
-int FunctionDivByTwo(int indice, int size, int* buffer)
+static int FunctionDivByTwo(int indice, int size, int* buffer)
 {
    int temp;                                                  // Hold the temporary value allowing to use the conversion method
    int carry;
@@ -67,10 +64,24 @@ int FunctionDivByTwo(int indice, int size, int* buffer)
       carry = temp % 2;                                         // carry        <= 1  / 1  / (0)             0  / (1)       1  / (1)      1  / (0)         (0)     (0)    (0)      (1)
       indice++;                                                 // indice       <= 2  / 3  / 4               3  / 4         3  / 4        3  / 4            4       4      4        4
    }
-   return (carry);   
+   return (carry);    
 }
 
-int* BinaryConv(int *buffer,int size)               
+static void PrintBinary(int count, int *buffer)                   // Print in reverse the table holding the binary conversion of the integers
+{
+   int numberOfPrint;
+   numberOfPrint = count;
+
+   while( numberOfPrint >= 0)
+   {
+      printf("%d", buffer[numberOfPrint]);
+      numberOfPrint--;
+   }
+   free(buffer);                                     // end of line we reset the bolean // AL call systeme no tested
+   printf("\n");     
+}
+
+static int* BinaryConv(int *buffer,int size)               
 {   
    int firstIndice;                                               // Put an offset if we loose un digit between the number and the result of his division by two
    int countNumberDisplay;                                        // Count how many bit we will have to display
@@ -93,7 +104,7 @@ int* BinaryConv(int *buffer,int size)
    return (RenewBuffer(buffer));
 }
 
-int *RenewBuffer(int *buffer)
+static int *RenewBuffer(int *buffer)
 {
    free(buffer);
    buffer = (int*)calloc(ALLOCATION_STEP,sizeof(int));
@@ -102,7 +113,7 @@ int *RenewBuffer(int *buffer)
    return (buffer);
 }
 
-int TestEqualZero(int *buffer, int indice)
+static int TestEqualZero(int *buffer, int indice)
 {
    if(buffer[indice] == 0)
    {                                                                     
@@ -111,21 +122,7 @@ int TestEqualZero(int *buffer, int indice)
    return (indice); 
 }
 
-void PrintBinary(int count, int *buffer)                   // Print in reverse the table holding the binary conversion of the integers
-{
-   int numberOfPrint;
-   numberOfPrint = count;
-
-   while( numberOfPrint >= 0)
-   {
-      printf("%d", buffer[numberOfPrint]);
-      numberOfPrint--;
-   }
-   free(buffer);                                     // end of line we reset the bolean // AL call systeme no tested
-   printf("\n");     
-}
-
-bool CheckSpace(char characterRead)
+static bool CheckSpace(char characterRead)
 {
    if(characterRead != CHARACTER_IGNORED)           // If its not an empty line
    {
@@ -137,7 +134,7 @@ bool CheckSpace(char characterRead)
    }
 }
 
-bool CheckNumber(char characterRead)       // Check if the number in on the range       
+static bool CheckNumber(char characterRead)       // Check if the number in on the range       
 {
    if( ((characterRead - '0') > LIMIT_OF_CONVERSION_UP) || ((characterRead - '0') < LIMIT_OF_CONVERSION_DOWN) )   // Check if its a number between 0 and 9     
    { 
@@ -148,8 +145,12 @@ bool CheckNumber(char characterRead)       // Check if the number in on the rang
       return (true);
    }
 }
+ 
+/**************************************************************/
+/*                         PUBLIC FUNCTIONS                   */
+/**************************************************************/
 
-void DecToBin(FILE *fp)  // AL Public function le reste devrait etre private                       
+void DecToBin(FILE *fp)                         
 {                  
    int indice;                          
    int *bufferInt;

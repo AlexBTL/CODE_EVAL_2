@@ -24,15 +24,6 @@
 /*                        PUBLIC FUNCTIONS                    */
 /**************************************************************/
 
-bool MemoryCheck(int *buffer);
-int* MemoryAdd(int value,int *memory);
-int FunctionDivByTwo(int indice, int size, int* buffer);
-int* BinaryConv(int *bufferInt,int size);
-int* RenewBuffer(int *buffer);
-int TestEqualZero(int *buffer, int indice);
-void PrintBinary(int countNumberDisplay, int *buffer);
-bool CheckSpace(char characterRead);
-bool CheckNumber(char characterRead);
 void DecToBin(FILE *fp);
 
 /**************************************************************/
