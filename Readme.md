@@ -8,7 +8,7 @@ Description:
 - If the number or type of arguments given in not as expected, an error is send on stdout.
 - All the empty lines are ignored.
 - All the lines with only letters or characters are ignored.
-- All letters or characters melt with numbers on a line will be ignored.
+- All letter or characters melt with numbers on a line will be ignored.
 
 Compilation :
 

@@ -37,7 +37,7 @@ int main(int argc, char* argv [])
 		else
 		{
 			DecToBin(fp);
-			fclose(fp);
+			fclose(fp);        
 		}		                      
 	}
 	if(argc > NB_ARGUMENTS_WANTED)
