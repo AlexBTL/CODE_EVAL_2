@@ -199,16 +199,16 @@ void DecToBin(FILE *fp)
       buffRead[0] = fgetc(fp);                                                                                                                // Get the char
       if(((CheckSpace(buffRead[0]) == true) || (buffRead[0] == EOF)) && (CheckSpace(buffRead[1]) == false) && (notOnlyLetter == true))        // If we are at the end of the line or if we are at the end of the file
       {                     
-         bufferInt = BinaryConv(bufferInt,indice);
-         indice = 0;
-         notOnlyLetter = false;
+        bufferInt = BinaryConv(bufferInt,indice);
+        indice = 0;
+        notOnlyLetter = false;
       }
       else if(CheckNumber(buffRead[0]) == true)    // Check if its a number between 0 and 9     
       { 
-            indice++;
-            bufferInt = MemoryAdd(indice,bufferInt);
-            bufferInt[indice] = (buffRead[0] - '0');  // Convert the char to an int and add it in the buffer
-            notOnlyLetter = true;
+        indice++;
+        bufferInt = MemoryAdd(indice,bufferInt);
+        bufferInt[indice] = (buffRead[0] - '0');  // Convert the char to an int and add it in the buffer
+        notOnlyLetter = true;
       }
    }                                                           
 }
