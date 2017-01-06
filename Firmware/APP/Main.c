@@ -25,9 +25,11 @@
 /**************************************************************/
 /*                         PUBLIC FUNCTIONS                   */
 /**************************************************************/
+
 int main(int argc, char* argv [])
 {
 	FILE *fp;
+	
 	if(argc == NB_ARGUMENTS_WANTED)
 	{
 		if((fp = fopen(argv[1],"r")) == NULL)

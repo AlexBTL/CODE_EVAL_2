@@ -23,8 +23,9 @@
 /*                         PUBLIC FUNCTIONS                   */
 /**************************************************************/
 
+//AL : General rules un fichier max 5 fonctions, une fonction max 25 lignes, et max 5 variable locale DecToBin trop longue
 
-bool MemoryCheck(int *buffer)
+bool MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d'erreur car tu test bien l'echec mais quand tu apelle cette fonction tu lis pas la valeur de retour de cette fonction donc ca sert a rien 
 {
    if(buffer != NULL)
    {
@@ -36,10 +37,6 @@ bool MemoryCheck(int *buffer)
       return (false);
    }
 }
-
-
-
-
 
 int* MemoryAdd(int value,int *memory)                     // Add some memory space if the number is bigger
 {
@@ -54,10 +51,6 @@ int* MemoryAdd(int value,int *memory)                     // Add some memory spa
    }
    return (moreMemory);
 }
-
-
-
-
 
 int FunctionDivByTwo(int indice, int size, int* buffer)
 {
@@ -77,10 +70,6 @@ int FunctionDivByTwo(int indice, int size, int* buffer)
    return (carry);   
 }
 
-
-
-
-
 int* BinaryConv(int *buffer,int size)               
 {   
    int firstIndice;                                               // Put an offset if we loose un digit between the number and the result of his division by two
@@ -90,6 +79,7 @@ int* BinaryConv(int *buffer,int size)
    firstIndice = 1;                                               // Use when you loose a digit during the division to read next time one indice after the begining
    countNumberDisplay = 0;
    bufferBinary = (int*)calloc(ALLOCATION_STEP,sizeof(int));
+
    MemoryCheck(bufferBinary);
    
    while(firstIndice <= size)                                                            // Exemple : number 134 (1000 0110)=> size 3  bufferInt = [1,3,4]                            
@@ -99,25 +89,18 @@ int* BinaryConv(int *buffer,int size)
       bufferBinary = MemoryAdd(countNumberDisplay,bufferBinary);
       firstIndice = TestEqualZero(buffer, firstIndice);                                                                                     
    }
-   PrintBinary((countNumberDisplay-1),bufferBinary);                                          // Retrun the lenght of the binary conversion
+   PrintBinary((countNumberDisplay - 1),bufferBinary);                                          // Retrun the lenght of the binary conversion
    return (RenewBuffer(buffer));
 }
 
-
-
-
-
-int* RenewBuffer(int *buffer)
+int *RenewBuffer(int *buffer)
 {
    free(buffer);
    buffer = (int*)calloc(ALLOCATION_STEP,sizeof(int));
    MemoryCheck(buffer);
+
    return (buffer);
 }
-
-
-
-
 
 int TestEqualZero(int *buffer, int indice)
 {
@@ -127,10 +110,6 @@ int TestEqualZero(int *buffer, int indice)
    }
    return (indice); 
 }
-
-
-
-
 
 void PrintBinary(int count, int *buffer)                   // Print in reverse the table holding the binary conversion of the integers
 {
@@ -142,13 +121,9 @@ void PrintBinary(int count, int *buffer)                   // Print in reverse t
       printf("%d", buffer[numberOfPrint]);
       numberOfPrint--;
    }
-   free(buffer);                                     // end of line we reset the bolean
+   free(buffer);                                     // end of line we reset the bolean // AL call systeme no tested
    printf("\n");     
 }
- 
-
-   
-
 
 bool CheckSpace(char characterRead)
 {
@@ -162,10 +137,6 @@ bool CheckSpace(char characterRead)
    }
 }
 
-
-
-
-
 bool CheckNumber(char characterRead)       // Check if the number in on the range       
 {
    if( ((characterRead - '0') > LIMIT_OF_CONVERSION_UP) || ((characterRead - '0') < LIMIT_OF_CONVERSION_DOWN) )   // Check if its a number between 0 and 9     
@@ -178,10 +149,7 @@ bool CheckNumber(char characterRead)       // Check if the number in on the rang
    }
 }
 
-
-
-
-void DecToBin(FILE *fp)                              
+void DecToBin(FILE *fp)  // AL Public function le reste devrait etre private                       
 {                  
    int indice;                          
    int *bufferInt;
