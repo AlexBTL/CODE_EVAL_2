@@ -1,3 +1,6 @@
+CheckValues.o
+Memory.o
+Conversion.o
 DecimalToBinary.o
 DecimalToBinary.exe
 Main.o

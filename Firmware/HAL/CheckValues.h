@@ -1,37 +1,30 @@
 /* 
- * File:   DecimalToBinary.h
+ * File:   CheckValues.h
  * Author: abutel
  *
  * Created on January 03, 2016, 02:04 PM
  */
 
-#ifndef DECIMALTOBINARY_H
-#define	DECIMALTOBINARY_H
+#ifndef CHECKVALUES_H
+#define	CHECKVALUES_H
 
 /**************************************************************/
 /*                        DEFINE & TYPEDEF                    */
 /**************************************************************/
 
-#define NB_ARGUMENTS_WANTED 2
-#define ALLOCATION_STEP 1
-#define SIZE_BUFF_READ 2
-
-typedef struct BufferInt_t
-{
-	int *pInt;
-	int *pRead;
-	int indice;
-	bool notOnlyLetter;	
-} bufferInt_s;
+#define CHARACTER_IGNORED '\n'
+#define LIMIT_OF_CONVERSION_UP 9
+#define LIMIT_OF_CONVERSION_DOWN 0
 
 /**************************************************************/
 /*                        PUBLIC FUNCTIONS                    */
 /**************************************************************/
 
-void DecToBin(FILE *fp);
+bool CheckSpace(char characterRead);
+bool CheckNumber(char characterRead);
 
 /**************************************************************/
 /*                        PRIVATE FUNCTIONS                   */
 /**************************************************************/
 
-#endif	/* DECIMALTOBINARY */
+#endif	/* CHECKVALUES */

@@ -1,37 +1,26 @@
 /* 
- * File:   DecimalToBinary.h
+ * File:   Memory.h
  * Author: abutel
  *
  * Created on January 03, 2016, 02:04 PM
  */
 
-#ifndef DECIMALTOBINARY_H
-#define	DECIMALTOBINARY_H
+#ifndef MEMORY_H
+#define	MEMORY_H
 
 /**************************************************************/
 /*                        DEFINE & TYPEDEF                    */
 /**************************************************************/
-
-#define NB_ARGUMENTS_WANTED 2
-#define ALLOCATION_STEP 1
-#define SIZE_BUFF_READ 2
-
-typedef struct BufferInt_t
-{
-	int *pInt;
-	int *pRead;
-	int indice;
-	bool notOnlyLetter;	
-} bufferInt_s;
-
 /**************************************************************/
 /*                        PUBLIC FUNCTIONS                    */
 /**************************************************************/
 
-void DecToBin(FILE *fp);
+void MemoryCheck(int *buffer);
+int* MemoryAdd(int value, int *memory);
 
 /**************************************************************/
 /*                        PRIVATE FUNCTIONS                   */
 /**************************************************************/
 
-#endif	/* DECIMALTOBINARY */
+
+#endif	/* MEMORY */
