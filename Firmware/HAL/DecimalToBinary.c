@@ -58,9 +58,9 @@ void DecToBin(FILE *fp)
     
    bufferInt.indice = 0;
    bufferInt.notOnlyLetter = false;
-   bufferInt.pInt = (int*)calloc(ALLOCATION_STEP,sizeof(int));
+   bufferInt.pInt = (int*)calloc(ALLOCATION_STEP, sizeof(int));
    MemoryCheck(bufferInt.pInt);  
-   bufferInt.pRead = (int*)calloc(SIZE_BUFF_READ,sizeof(int));
+   bufferInt.pRead = (int*)calloc(SIZE_BUFF_READ, sizeof(int));
    MemoryCheck(bufferInt.pRead);   
 
    while(!feof(fp))
