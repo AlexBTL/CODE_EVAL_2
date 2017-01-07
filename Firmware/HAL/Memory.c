@@ -29,7 +29,7 @@ void MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d
 {
    if(buffer == NULL)
    {
-      fprintf(stdout,"Error 03 : Allocation memory fail\n");
+      fprintf(stdout,"Error 04 : Allocation memory fail");
       exit(0);
    }
 }
