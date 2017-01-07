@@ -26,7 +26,7 @@
 static int *RenewBuffer(int *buffer)
 {
    free(buffer);
-   buffer = (int*)calloc(ALLOCATION_STEP,sizeof(int));
+   buffer = (int*)calloc(ALLOCATION_STEP, sizeof(int));
    MemoryCheck(buffer);
 
    return (buffer);
@@ -85,17 +85,17 @@ int* BinaryConv(int *buffer,int size)
    
    firstIndice = 1;                                               // Use when you loose a digit during the division to read next time one indice after the begining
    countNumberDisplay = 0;
-   bufferBinary = (int*)calloc(ALLOCATION_STEP,sizeof(int));
+   bufferBinary = (int*)calloc(ALLOCATION_STEP, sizeof(int));
 
    MemoryCheck(bufferBinary);
    
    while(firstIndice <= size)                                                            // Exemple : number 134 (1000 0110)=> size 3  bufferInt = [1,3,4]                            
    {  
-      bufferBinary[countNumberDisplay] = FunctionDivByTwo(firstIndice,size,buffer);
+      bufferBinary[countNumberDisplay] = FunctionDivByTwo(firstIndice, size, buffer);
       countNumberDisplay++;
-      bufferBinary = MemoryAdd(countNumberDisplay,bufferBinary);
-      firstIndice = TestEqualZero(buffer,firstIndice);                                                                                     
+      bufferBinary = MemoryAdd(countNumberDisplay, bufferBinary);
+      firstIndice = TestEqualZero(buffer, firstIndice);                                                                                     
    }
-   PrintBinary((countNumberDisplay - 1),bufferBinary);                                          // Retrun the lenght of the binary conversion
+   PrintBinary((countNumberDisplay - 1), bufferBinary);                                          // Retrun the lenght of the binary conversion
    return (RenewBuffer(buffer));
 }

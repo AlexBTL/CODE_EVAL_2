@@ -22,20 +22,20 @@
 /*                         PRIVATE FUNCTIONS                  */
 /**************************************************************/
 
-static void Checkfopen(FILE *fp, char* argv [])
+static void Checkfopen(FILE *fp)
 {
-	if((fp = fopen(argv[1],"r")) == NULL)
+	if(fp == NULL)
 	{
-		fprintf(stdout,"Error 00 : This file doesn't exist");
+		fprintf(stdout, "\nError 00 : This file doesn't exist\n");
 		exit(0); 
 	}
 }
 
-static void Checkfclose(FILE *fp)
+static void Checkfclose(int close)
 {
-	if(fclose(fp) == EOF)
+	if(close == EOF)
 	{
-		fprintf(stdout,"Error 01 : This file did not closed properly");
+		fprintf(stdout, "\nError 01 : This file did not closed properly\n");
 		exit(0);
 	}
 }
@@ -44,26 +44,27 @@ static void Checkfclose(FILE *fp)
 /*                         PUBLIC FUNCTIONS                   */
 /**************************************************************/
 
-int main(int argc, char* argv [])
+int main(int argc, char *argv[])
 {
 	FILE *fp;
+	int close;
 	
 	if(argc == NB_ARGUMENTS_WANTED)
 	{
-		fp = fopen(argv[1],"r")
-		Checkfopen(FILE *fp,argv[1]);
+		fp = fopen(argv[1],"r");
+		Checkfopen(fp);
 		DecToBin(fp);
-		fclose(fp);
-		Checkfclose(fp);        		                      
+		close = fclose(fp);
+		Checkfclose(close);        		                      
 	}
 	if(argc > NB_ARGUMENTS_WANTED)
 	{
-		fprintf(stdout,"Error 02 : Too many arguments");
+		fprintf(stdout, "\nError 02 : Too many arguments\n");
 		exit(0); 
 	}
 	if(argc < NB_ARGUMENTS_WANTED)
 	{
-		fprintf(stdout,"Error 03 : Not enough arguments");
+		fprintf(stdout, "\nError 03 : Not enough arguments\n");
 		exit(0); 
 	}                                              
 	return(0);

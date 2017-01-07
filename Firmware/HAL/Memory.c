@@ -29,7 +29,7 @@ void MemoryCheck(int *buffer) // AL GOOD mais le programme s'arette pas en cas d
 {
    if(buffer == NULL)
    {
-      fprintf(stdout,"Error 04 : Allocation memory fail");
+      fprintf(stdout, "\nError 04 : Allocation memory fail\n");
       exit(0);
    }
 }
@@ -42,7 +42,7 @@ int* MemoryAdd(int value, int *memory)                     // Add some memory sp
 
    if(value % ALLOCATION_STEP == 0)
    {
-      moreMemory = (int*)realloc(memory,(value + ALLOCATION_STEP) * sizeof(int));
+      moreMemory = (int*)realloc(memory, (value + ALLOCATION_STEP) * sizeof(int));
       MemoryCheck(moreMemory);
    }
    return (moreMemory);
